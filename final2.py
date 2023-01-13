@@ -61,23 +61,6 @@ def getTrainTestData():
 
     return train_sequences, train_labels, val_sequences, val_labelss, test_sequences, test_labels
 
-# # 定義模型
-# model = Sequential()
-# model.add(Embedding(vocab_size, 128))
-# model.add(LSTM(128))
-# model.add(tf.keras.layers.Dense(1, activation="sigmoid"))
-
-# # 編譯模型
-# model.compile(loss="binary_crossentropy",
-#               optimizer="adam", metrics=["accuracy"])
-
-# # 訓練模型
-# model.fit(train_sequences, train_labels, epochs=10, batch_size=32,
-#           validation_data=(test_sequences, test_labels))
-# loss, accuracy = model.evaluate(test_sequences, test_labels)
-# print("Loss:", loss)
-# print("Accuracy:", accuracy)
-
 
 def getModel():
     inputs = keras.Input(shape=(100))
@@ -96,8 +79,6 @@ def getModel():
     outputs = Dense(2, activation='softmax')(dropout)
 
     model = Model(inputs=inputs, outputs=outputs)
-
-    radam = tfa.optimizers.RectifiedAdam(0.001)
 
     model.compile(loss='mse',
                   optimizer=keras.optimizers.Adam(1e-3),
